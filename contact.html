@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - B3B3'S THRIFT</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.contact-header{
+background:#111;
+color:white;
+text-align:center;
+padding:60px 20px;
+}
+
+.contact-container{
+max-width:700px;
+margin:50px auto;
+padding:20px;
+}
+
+.contact-box{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.contact-box input,
+.contact-box textarea{
+width:100%;
+padding: 18px;
+margin:15px 0;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+.send-btn{
+width:100%;
+padding:15px;
+background:#d97706;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+.info{
+margin-top:30px;
+background:#f5f5f5;
+padding:20px;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+B3B3'S THRIFT
+</div>
+
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="cart.html">Cart</a></li>
+<li><a href="track-order.html">Track Order</a></li>
+
+</ul>
+
+</button>
+</nav>
+
+<div class="contact-header">
+
+<h1>Contact Us</h1>
+<p>We are here to help you</p>
+
+</div>
+
+<div class="contact-container">
+
+<div class="contact-box">
+
+<h2>Send a Message</h2>
+
+<form onsubmit="sendMessage(event)">
+
+<input type="text" id="name" placeholder="Your Name" required>
+
+<input type="number" id="number" placeholder="Your Number" required>
+
+<input type="email" id="email" placeholder="Your Email" required>
+
+<textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+
+<button class="send-btn" type="submit">
+Send Message
+</button>
+
+</form>
+
+<div class="info">
+
+<h3>Store Info</h3>
+
+<p>📍 Ghana</p>
+<p>📞 0594461421</p>
+<p>📧 b3b3sthrift@gmail.com</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function sendMessage(e){
+e.preventDefault();
+
+const name =
+document.getElementById("name").value;
+
+const number =
+document.getElementById("number").value;
+
+const email =
+document.getElementById("email").value;
+
+const message =
+document.getElementById("message").value;
+
+// Send message to WhatsApp
+
+const whatsappText =
+`New Message%0A%0AName: ${name}%0ANumber: ${number}%0AEmail: ${email}%0AMessage: ${message}`;
+
+window.open(
+`https://wa.me/233594461421?text=${whatsappText}`,
+"_blank"
+);
+
+alert("Message sent to WhatsApp!");
+
+}
+
+</script>
+<script type="module">
+
+import { auth } from "./firebase-config.js";
+
+import {
+signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+document
+.getElementById("logoutBtn")
+.addEventListener("click", async () => {
+
+await signOut(auth);
+
+window.location.href = "login.html";
+
+});
+
+</script>
+<FOOter>
+    THANKS FOR VISITING B3B3's THRIFT CALL 0594461421 OR 0551474235
+</FOOter>
+</body>
+</html>

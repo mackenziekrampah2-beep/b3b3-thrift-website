@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.cart-container{
+padding:50px 8%;
+}
+
+.cart-item{
+display:flex;
+align-items:center;
+gap:20px;
+background:white;
+padding:15px;
+margin-bottom:15px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.cart-item img{
+width:100px;
+height:100px;
+object-fit:cover;
+border-radius:8px;
+}
+
+.remove-btn{
+background:red;
+color:white;
+border:none;
+padding:10px;
+cursor:pointer;
+border-radius:5px;
+}
+
+.total-box{
+margin-top:30px;
+background:white;
+padding:20px;
+border-radius:10px;
+}
+
+.checkout-btn{
+display:inline-block;
+margin-top:15px;
+background:#d97706;
+color:white;
+padding:12px 25px;
+text-decoration:none;
+border-radius:6px;
+}
+</style>
+
+</head>
+<body>
+
+<nav class="navbar">
+<div class="logo">B3B3'S THRIFT</div>
+
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+
+</ul>
+</nav>
+
+<div class="cart-container">
+
+<h1>Your Cart</h1>
+
+<div id="cart-items"></div>
+<div class="total-box">
+<h2>Total: GH₵<span id="total">0</span></h2>
+
+
+<a href="checkout.html" class="checkout-btn">
+Proceed To Checkout
+</a>
+
+</div>
+
+</div>
+
+<script>
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+const cartItems =
+document.getElementById("cart-items");
+
+const totalElement =
+document.getElementById("total");
+
+function displayCart(){
+
+cartItems.innerHTML = "";
+
+let total = 0;
+
+cart.forEach((item,index)=>{
+
+total += item.price;
+
+cartItems.innerHTML += `
+
+<div class="cart-item">
+
+<img src="${item.image}">
+
+<div>
+
+<h3>${item.name}</h3>
+
+<p>GH₵${item.price}</p>
+<p>Size: ${item.selectedSize}</p> <!-- Display the selected size -->
+
+<button
+class="remove-btn"
+onclick="removeItem(${index})">
+Remove
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+totalElement.textContent = total;
+
+}
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+displayCart();
+
+}
+
+displayCart();
+
+</script>
+<script>
+
+</script>
+</script>
+<script type="module">
+
+import { auth } from "./firebase-config.js";
+
+import {
+signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+document
+.getElementById("logoutBtn")
+.addEventListener("click", async () => {
+
+await signOut(auth);
+
+
+});
+
+</script>
+<script type="module">
+
+import { auth } from "./firebase-config.js";
+
+import {
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+onAuthStateChanged(auth, (user)=>{
+
+if(!user){
+
+
+}
+
+});
+
+</script>
+<Footer>
+    THANKS FOR VISITING B3B3's THRIFT CALL 0594461421 OR 0551474235
+</Footer>
+
+</body>
+</html>

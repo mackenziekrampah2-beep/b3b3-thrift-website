@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Order - BB3'S THRIFT</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.track-header{
+background:#111;
+color:white;
+text-align:center;
+padding:60px 20px;
+}
+
+.track-container{
+max-width:700px;
+margin:50px auto;
+padding:20px;
+}
+
+.track-box{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.track-box input{
+width:100%;
+padding:15px;
+border:1px solid #ccc;
+border-radius:6px;
+margin:15px 0;
+}
+
+.track-btn{
+width:100%;
+padding:15px;
+background:#d97706;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+.result{
+margin-top:25px;
+display:none;
+padding:20px;
+background:#f5f5f5;
+border-radius:8px;
+}
+
+.status{
+font-size:20px;
+font-weight:bold;
+color:#d97706;
+}
+
+.timeline{
+margin-top:20px;
+}
+
+.timeline p{
+margin-bottom:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+BB3'S THRIFT
+</div>
+
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="cart.html">Cart</a></li>
+<li><a href="track-order.html">Track Order</a></li>
+
+</ul>
+
+</button>
+</nav>
+
+<div class="track-header">
+
+<h1>Track Your Order</h1>
+
+<p>
+Enter your Order ID below
+</p>
+
+</div>
+
+<div class="track-container">
+
+<div class="track-box">
+
+<h2>Order Tracking</h2>
+
+<input
+type="text"
+id="orderId"
+placeholder="Enter Order ID">
+
+<button
+class="track-btn"
+onclick="trackOrder()">
+
+Track Order
+
+</button>
+
+<div id="result" class="result">
+
+<p class="status" id="status"></p>
+
+<div class="timeline">
+
+<p>✅ Order Received</p>
+
+<p>✅ Payment Confirmed</p>
+
+<p id="shippingStep">⏳ Preparing Shipment</p>
+
+<p id="deliveryStep">📦 Out For Delivery</p>
+
+<p id="completedStep">🏠 Delivered</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function trackOrder(){
+
+const orderId =
+document.getElementById("orderId").value;
+
+if(orderId === ""){
+
+alert("Please enter an Order ID");
+
+return;
+
+}
+
+document.getElementById("result").style.display = "block";
+
+document.getElementById("status").textContent =
+"Processing";
+
+document.getElementById("shippingStep").textContent =
+"⏳ Preparing Shipment";
+
+document.getElementById("deliveryStep").textContent =
+"📦 Out For Delivery";
+
+document.getElementById("completedStep").textContent =
+"🏠 Delivered";
+
+}
+
+</script>
+<script>
+</script>
+<script type="module">
+
+import { auth } from "./firebase-config.js";
+
+import {
+signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+document
+.getElementById("logoutBtn")
+.addEventListener("click", async () => {
+
+await signOut(auth);
+
+window.location.href = "login.html";
+
+});
+
+</script>
+<footer>
+    THIS WEBSITE WAS CREATED BY MAC AND KEN CALL 0538339736 OR 0543737926 FOR MORE INFO
+</footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../Videos"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "HTML"
+	}
+}

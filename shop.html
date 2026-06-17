@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop - B3B3'S THRIFT</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.shop-header{
+text-align:center;
+padding:60px 30px;
+background:#111;
+color:rgba(254, 171, 4, 0.979);
+}
+
+.shop-container{
+padding:60px 10%;
+}
+
+.products-grid{
+display:grid;
+grid-template-columns:repeat(3 in a role,minmax(250px,1fr));
+gap:25px;
+}
+
+.product-card{
+background:rgb(252, 251, 251);
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.product-card img{
+width: 270px;
+height:350px;
+object-fit:cover;
+}
+
+.product-info{
+padding:15px;
+}
+
+.product-info h3{
+margin-bottom:10px;
+}
+
+
+.price{
+font-size:18px;
+font-weight:bold;
+color:#d97706;
+margin-bottom:15px;
+}
+
+.add-btn{
+width:100%;
+padding:12px;
+background:#d97706;
+color:white;
+border:none;
+cursor:pointer;
+border-radius:5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+B3B3'S THRIFT
+</div>
+
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="cart.html">Cart</a></li>
+</ul>
+
+</button>
+</nav>
+ <script type="module">
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = { 
+  apiKey: "AIzaSyD0g1k5J8K9L8M7N6O5P4Q3R2S1T0U9V8W7X6Y5Z4A3B2C1D0E",
+  authDomain: "your-project-id.firebaseapp.com",
+  projectId: "your-project-id",
+  storageBucket: "your-project-id.appspot.com",
+  messagingSenderId: "123456789012",
+  appId: "1:123456789012:web:abcdef123456"
+ };
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);// Firebase imports + config goes here
+ // Your products array goes here  
+ // buyProduct function goes here
+ </script>
+
+ </body>
+</html>
+
+<div class="shop-header">
+<h1>Our Collection</h1>
+<p>Discover quality thrift fashion</p>
+</div>
+
+<div class="shop-container">
+<div class="categories">
+
+
+</div>
+<div id="products" class="products-grid"></div>
+
+</div>
+<script>
+    displayProducts(products);
+    
+
+</script>
+
+<script>
+    
+
+const products = [
+
+{
+id:1,
+name:"Vintage Shirt",
+price:1,
+sizes:["M","S","X","XL","XXL"],
+image:"images/product1.jpg"
+},
+
+{
+id:2,
+name:"Ladies Dress",
+price:180,
+image:"images/product2.jpg",
+sizes:["M","S","X","XL","XXL"]
+},
+
+{
+id:3,
+name:"Denim Jacket",
+price:220,
+image:"images/product3.jpg",
+sizes:["M","S","X","XL","XXL"]
+},
+
+{
+id:4,
+name:"Cargo Trouser",
+price:150,
+image:"images/product4.jpg",
+sizes:["M","S","X","XL","XXL"]
+},
+
+{
+id:5,
+name:"Summer Dress",
+price:170,
+image:"images/product5.jpg",
+sizes:["M","S","X","XL","XXL"]
+},
+
+{
+id:6,
+name:"Designer Top",
+price:140,
+image:"images/product6.jpg",
+sizes:["M","S","X","XL","XXL"]
+},
+
+{
+    id:7,
+    name:"Casual Shirt",
+    price:130,
+    image:"images/product7.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+
+{
+    id:8,
+    name:"Evening GOWN",
+    price:250,
+    image:"images/product8.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+
+{
+    id:9,
+    name:"Leather Jacket",
+    price:300,
+    image:"images/product9.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:10,
+    name:"Zara Shirt",
+    price:120,
+    category:"Men",
+    image:"images/product10.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+  id:11,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product11.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:12,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product12.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:13,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product13.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:14,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product14.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:15,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product15.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:16,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product16.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:17,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product17.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:18,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product18.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:19,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product19.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:20,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product20.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:21,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product21.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:22,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product22.jpg",
+    sizes:["M","S","X","XL","XXL"]
+
+},
+{
+    id:23,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product23.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:24,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product24.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:25,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product25.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:26,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product26.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    
+    id:27,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product27.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:28,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product28.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+    id:29,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product29.jpg",
+    sizes:["M","S","X","XL","XXL"]
+},
+{
+   id:30,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product30.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:31,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product31.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:32,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product32.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:33,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product33.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:34,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product34.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:35,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product35.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:36,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product36.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:37,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product37.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:38,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product38.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:39,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product39.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:40,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product40.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:41,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product41.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:42,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product42.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:43,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product43.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:44,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product44.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:45,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product45.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:46,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product46.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:47,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product47.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:48,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product48.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:49,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product49.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:50,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product50.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:51,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product51.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:52,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product52.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:53,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product53.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:54,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product54.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:55,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product55.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:56,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product56.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:57,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product57.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:58,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product58.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:59,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product59.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:60,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product60.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:61,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product61.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:62,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product62.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:63,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product63.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:64,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product64.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:65,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product65.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:66,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product66.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:67,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product67.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:68,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product68.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:69,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product69.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:70,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product70.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:71,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product71.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:72,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product72.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:73,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product73.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:74,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product74.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:75,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product76.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:76,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product76.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:77,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product77.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:78,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product78.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:79,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product79.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:80,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product80.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:81,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product81.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:82,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product82.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:83,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product83.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:84,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product84.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:85,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product85.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:86,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product86.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:87,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product87.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:88,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product88.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:89,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product89.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:90,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product90.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:91,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product91.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:92,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product92.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:93,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product93.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:94,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product94.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:95,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product95.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:96,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product96.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:97,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product97.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:98,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product98.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:99,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product99.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:100,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product100.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:101,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product101.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:102,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product102.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:103,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product103.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:104,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product104.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:105,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product105.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:106,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product106.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:107,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product107.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:108,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product108.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:109,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product109.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:110,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product110.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:111,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product111.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:112,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product112.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:113,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product113.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:114,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product114.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:115,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product115.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:116,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product116.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:117,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product117.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:118,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product118.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:119,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product119.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:120,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product120.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:121,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product121.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:122,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product122.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:123,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product123.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:124,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product124.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:125,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product125.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+{
+   id:126,
+    name:"Zara Shirt",
+    price:120,
+    image:"images/product126.jpg",
+    sizes:["M","S","X","XL","XXL"] 
+},
+
+];
+
+
+const container =
+document.getElementById("products");
+
+products.forEach(product=>{
+
+container.innerHTML += `
+
+
+<div class="product-card">
+
+<img src="${product.image}">
+
+
+<div class="product-info">
+
+<h3>${product.name}</h3>
+
+<p class="price">
+GH₵${product.price}
+</p>
+<label>Size: </label>
+<select id="size-${product.id}">
+  <option value="">Choose Size</option>
+  ${product.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
+</select>
+
+
+<button
+class="add-btn"
+onclick="addToCart(${product.id})">
+Add To Cart
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+function addToCart(id){
+function addToCart(productId) {
+  const size = document.getElementById('size-' + productId).value;
+  if(!size) {
+    alert("Pick a size first CEO 😂");
+    return;
+  
+  }
+  // ...rest of your cart code here
+
+}
+
+const product =
+products.find(p => p.id === id);
+
+const selectedSize =
+document.getElementById(`size-${id}`).value;
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push({
+...product,
+selectedSize:selectedSize
+});
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+alert("Added to cart");
+
+
+}
+
+</script>
+<script>
+
+</script>
+
+
+
+<footer>
+    THIS WEBSITE WAS BUILT BY MAC AND KEN CALL 0538339736 OR 0543737926 FOR EMPLOYMENT
+</footer>
+</body>
+</html>

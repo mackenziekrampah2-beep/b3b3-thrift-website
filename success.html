@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order Successful</title>
+
+<style>
+
+body{
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#f5f5f5;
+}
+
+.box{
+background:white;
+padding:700px;
+text-align:center;
+border-radius:500px;
+box-shadow:0 0 500px rgba(0,0,0,.1);
+}
+
+.btn{
+display:inline-block;
+margin-top:600px;
+padding:200px 300px;
+background:#d97706;
+color:white;
+text-decoration:none;
+border-radius:100px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>Payment Successful 🎉</h1>
+
+<p>
+Thank you for shopping with B3B3'S THRIFT.
+</p>
+<p>
+order ID:
+<strong id="orderNumber"></strong>
+</p>
+<a class="btn" id="whatsappBtn">
+Send Order To WhatsApp
+</a>
+
+</div>
+
+<script>
+
+const customer =
+JSON.parse(localStorage.getItem("customer"));
+
+const cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+// Generate a simple order ID: B3B + timestamp + random
+const orderId = 'B3B3' + Date.now().toString().slice(-6) + Math.floor(Math.random()*100);
+// Example: B3B350482317
+
+// STEP 2: Show it on the page
+document.getElementById('orderNumber').textContent = orderId;
+
+let orderText =
+`NEW ORDER%0A%0A`;
+
+orderText +=
+`Name: ${customer.name}%0A`;
+
+orderText +=
+`Phone: ${customer.phone}%0A`;
+
+orderText +=
+`Address: ${customer.address}%0A%0A`;
+
+orderText +=
+`Order ID: ${orderId}%0A%0A`;
+
+orderText +=
+`Items:%0A`;
+cart.forEach(item=>{
+
+orderText +=
+`${item.name} - GH₵${item.price}%0A`;
+
+orderText +=
+`Size: ${item.selectedSize}%0A%0A`;
+
+if(item.image){
+  orderText +=`Image: ${item.image}%0A%0A`;
+}
+
+});
+
+orderText +=
+`%0ATotal: GH₵${customer.total}`;
+
+document
+.getElementById("whatsappBtn")
+.href =
+`https://wa.me/233551474235?text=${orderText}`;
+
+</script>
+<script type="module">
+    import { db } from "./firebase-config.js";
+
+async function saveOrder(){
+
+const customer =
+JSON.parse(localStorage.getItem("customer"));
+
+const cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+const orderNumber =
+"B3B3-" + Date.now();
+
+const order = {
+  Timestamp: new Date().toLocaleString('en-GH', {timeZone: 'Accra/Ghana'}),
+  OrderID: orderNumber,
+  Customer: customer,
+  Items: cart,
+  Total: customer.total,
+  Size: customer.selectedSize,
+  Status: "processing",
+  CreatedAt: new Date()
+};
+await saveOrder(order);
+
+
+};
+async function saveOrder(){
+  const customer = JSON.parse(localStorage.getItem("customer"));
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  const orderNumber = "B3B3-" + Date.now();
+  
+  const order = {
+    Timestamp: new Date().toLocaleString('en-GH', {timeZone: 'Africa/Accra'}),
+    OrderID: orderNumber,
+    Customer: customer.name,
+    Items: cart.map(i => `${i.name} x${i.qty}`).join(', '),
+    Total: cart.reduce((sum, item) => sum + (item.price * item.qty), 0),
+    Size: customer.selectedSize,
+    Status: "processing"
+  
+  };
+
+  
+  try {
+    const res = await fetch('http://localhost:3000/save-order', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(order)
+    });
+    
+    if(!res.ok) throw new Error(`Server Error: ${res.status}`);
+    console.log('WhatsApp sent ✅');
+    alert('Order placed! Check WhatsApp');
+    
+  } catch (err) {
+    console.error('Error:', err);
+    alert('Order failed: ' + err.message);
+  }
+}
+
+
+
+</script>
+
+
+</script>
+</body>
+</html>

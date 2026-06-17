@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - B3B3'S THRIFT</title>
+  <script type="module">
+    import { auth, db } from './firebase.js';
+    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    
+    const ordersDiv = document.getElementById('orders');
+    
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        document.getElementById('welcome').innerText = 'Welcome ' + user.email;
+        loadOrders(user.uid);
+      } else {
+        window.location = 'login.html';
+      }
+    });
+    
+    async function loadOrders(userId) {
+      ordersDiv.innerHTML = 'Loading orders...';
+      try {
+        const q = query(collection(db, "orders"), where("userId", "==", userId));
+        const querySnapshot = await getDocs(q);
+        
+        if(querySnapshot.empty) {
+          ordersDiv.innerHTML = '<p>No orders yet. Place your first order!</p>';
+          return;
+        }
+        
+        let html = '';
+        querySnapshot.forEach((doc) => {
+          const order = doc.data();
+          html += `
+            <div style="border:1px solid #ddd; padding:15px; margin:10px; border-radius:8px; text-align:left">
+              <b>Order ID:</b> ${doc.id}<br>
+              <b>Item:</b> ${order.item || 'N/A'}<br>
+              <b>Price:</b> GHS ${order.price || 0}<br>
+              <b>Status:</b> ${order.status || 'Pending'}<br>
+              <b>Date:</b> ${order.date ? new Date(order.date.seconds * 1000).toLocaleDateString() : 'N/A'}
+            </div>
+          `;
+        });
+        ordersDiv.innerHTML = html;
+      } catch(e) {
+        ordersDiv.innerHTML = 'Error loading orders: ' + e.message;
+      }
+    }
+    
+    window.logout = async () => {
+      await signOut(auth);
+      window.location = 'login.html';
+    }
+  </script>
+</head>
+<body style="font-family:Arial; padding:30px; background:#f5f5f5">
+  <div style="max-width:600px; margin:auto; background:white; padding:30px; border-radius:10px">
+    <h2 id="welcome">Loading...</h2>
+    <p>This is B3B3'S THRIFT customer dashboard</p>
+    <h3>Your Orders:</h3>
+    <div id="orders">Loading...</div>
+    <br>
+    <button onclick="logout()" style="padding:10px 20px; cursor:pointer">Logout</button>
+  </div>
+</body>
+</html>

@@ -87,7 +87,7 @@ margin-bottom:40px;
 
 .products-grid{
 display:grid;
-grid-template-columns:repeat(2 in a role,minmax(200px,1fr));
+grid-template-columns:repeat(2, minmax(200px, 1fr));
 gap:25px;
 }
 

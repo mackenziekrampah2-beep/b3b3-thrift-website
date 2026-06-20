@@ -29,7 +29,7 @@ body {
 /* Main wrapper - this is the key part */
 .products-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+ grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
   padding: 24px;
   max-width: 1200px;
@@ -47,13 +47,13 @@ body {
 /* Make images fill card width */
 .product-card img {
   width: 100%;
-  height: 200px; /* Force same height for all images */
+  height: 220px; /* Force same height for all images */
   object-fit: cover; /* Crop instead of stretching */
   border-radius: 10px 10px 0 0;
 }
 
 /* Tablet: 2 columns */
-@media (max-width: 992px) {
+@media (max-width: 996px) {
   .products-wrapper {
     grid-template-columns: repeat(auto-fill,minmax(260px, 1fr));
     gap: 16px;
@@ -62,7 +62,7 @@ body {
 }
 
 /* Mobile: 1 column */
-@media (max-width: 600px) {
+@media (max-width: 615px) {
   .products-wrapper {
     grid-template-columns: 1fr;
     gap: 14px;

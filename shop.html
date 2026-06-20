@@ -29,7 +29,7 @@ body {
 /* Main wrapper - this is the key part */
 .products-wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
   padding: 24px;
   max-width: 1200px;
@@ -55,7 +55,7 @@ body {
 /* Tablet: 2 columns */
 @media (max-width: 992px) {
   .products-wrapper {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill,minmax(260px, 1fr));
     gap: 16px;
     padding: 16px;
   }
